@@ -22,7 +22,7 @@ namespace TicketHubCA.API.Controllers
         [HttpGet]
         public IActionResult GetOrder()
         {
-            return NoContent();
+            return Ok("The API is up!");
         }
 
         [HttpPost]
