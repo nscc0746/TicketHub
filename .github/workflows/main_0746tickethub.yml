@@ -7,8 +7,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'TicketHubCA.API/*'
   workflow_dispatch:
 
 jobs:
