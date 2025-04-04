@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Text.Json;
 using Azure.Storage.Queues;
 using System.Diagnostics;
+using System.Text;
 
 namespace TicketHubCA.API.Controllers
 {
@@ -69,8 +70,11 @@ namespace TicketHubCA.API.Controllers
             // serialize an object to json
             string message = JsonSerializer.Serialize(order);
 
+            //Encode the message data to base64 to resolve azure queue error
+            var bytes = Encoding.UTF8.GetBytes(message);
+
             // send string message to queue
-            await queueClient.SendMessageAsync(message);
+            await queueClient.SendMessageAsync(Convert.ToBase64String(bytes));
 
             return Ok();
         }
